@@ -1,5 +1,10 @@
 <?php
 
+
+use App\Livewire\AcademicsForm;
+use App\Livewire\AdmissionList;
+use App\Livewire\StudentForm;
+use App\Livewire\GuardiansForm;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('components.dashboard');
+// });
+
+Route::get('/admission/add/{id?}', StudentForm::class)->name('student');
+Route::get('/admission/guardian/{id}', GuardiansForm::class)->name('guardian');
+Route::get('/admission/academic/{id}', AcademicsForm::class)->name('academic');
+Route::get('/admission/list', AdmissionList::class)->name('list');

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('program')->required();
             $table->string('type')->required();
             $table->string('name')->required();
-            $table->string('picture')->nullable();
             $table->string('father')->required();
             $table->string('gender')->required();
             $table->date('dob')->required();

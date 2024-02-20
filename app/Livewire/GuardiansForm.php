@@ -6,6 +6,7 @@ use App\Models\Guardian;
 use App\Models\Student;
 use App\Models\StudentGuardian;
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
 
 
 class GuardiansForm extends Component
@@ -17,6 +18,8 @@ class GuardiansForm extends Component
     public $g_id;
 
     public $stu;
+
+    public $next=false;
 
     public $message;
 
@@ -85,6 +88,10 @@ class GuardiansForm extends Component
     
                 $save_relation->save();
             }
+            if($this->next==true)
+            {
+                return redirect()->route('academic', ['id' => $this->student_id]);
+            }
     
         
         }catch(\Exception $e){
@@ -95,48 +102,9 @@ class GuardiansForm extends Component
 
     public function saveNext()
     {
-        $this->validate();
         try{
-
-            if ($this->g_id) {
-                $guardian = Guardian::find($this->g_id);
-                $guardian->name = $this->name;
-                $guardian->relation = $this->relation;
-                $guardian->occupation = $this->occupation;
-                $guardian->organization = $this->organization;
-                $guardian->designation = $this->designation;
-                $guardian->income = $this->income;
-                $guardian->cnic = $this->cnic;
-                $guardian->mobile = $this->mobile;
-                $guardian->whatsapp = $this->whatsapp;
-                $guardian->address = $this->address;
-                $guardian->save();
-    
-            } else {
-                $guardian = new Guardian;
-                $guardian->name = $this->name;
-                $guardian->relation = $this->relation;
-                $guardian->occupation = $this->occupation;
-                $guardian->organization = $this->organization;
-                $guardian->designation = $this->designation;
-                $guardian->income = $this->income;
-                $guardian->cnic = $this->cnic;
-                $guardian->mobile = $this->mobile;
-                $guardian->whatsapp = $this->whatsapp;
-                $guardian->address = $this->address;
-                $guardian->save();
-    
-                $latest = Guardian::latest()->first();
-                $this->guardian_id = $latest->id;
-    
-                $save_relation = new StudentGuardian;
-                $save_relation->student_id = $this->student_id;
-                $save_relation->guardian_id = $this->guardian_id;
-    
-                $save_relation->save();
-            }
-            return redirect()->route('academic', ['id' => $this->student_id]);
-    
+            $this->next=true;
+            $this->saveClose();
         }catch(\Exception $e){
             $this->message =  $e->getMessage();
         }
@@ -145,6 +113,7 @@ class GuardiansForm extends Component
 
     public function editGuardian($id)
     {
+        //mount guardian details to fields
         try{
             $this->g_id = $id;
             $guardian = Guardian::find($this->g_id);
@@ -168,9 +137,13 @@ class GuardiansForm extends Component
         }
         catch(\Exception $e)
         {
-
+            $this->message = $e->getMessage();
         }
     }
+
+    // public function reset(){
+    //     $this->reset();
+    // }
     public function student()
     {
         return redirect()->route('student');

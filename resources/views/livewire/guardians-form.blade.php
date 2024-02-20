@@ -216,6 +216,7 @@
                                         <h3 class="card-title">
                                             <button class="btn btn-info" wire:click="saveClose">Save</button>
                                             <button class="btn btn-success" wire:click="saveNext">Save & Next</button>
+                                            {{-- <button class="btn btn-warning" wire:click="reset">New Guardian</button> --}}
                                         </h3>
                                     </div>
                                     @if (!empty($messgae))

@@ -153,8 +153,7 @@
     <script src="{{ url('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('admin/js/adminlte.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ url('admin/js/demo.js') }}"></script>
+  
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ url('admin/js/pages/dashboard.js') }}"></script>
     <script src="https://kit.fontawesome.com/94829659c0.js" crossorigin="anonymous"></script>

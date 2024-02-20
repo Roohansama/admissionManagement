@@ -47,7 +47,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('student')}}" class="nav-link active">
+                            <a href="{{route('student')}}" class="nav-link">
                                 <p>New Admission</p>
                             </a>
                         </li>
@@ -56,12 +56,7 @@
                                 <p>Admissions list</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                               
-                                <p>Leeds</p>
-                            </a>
-                        </li>
+                       
                     </ul>
                 </li>
                
